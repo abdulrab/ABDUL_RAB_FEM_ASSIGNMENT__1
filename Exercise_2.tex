@@ -1,0 +1,138 @@
+\section{Exercise}
+Derive the variational formulation and the corresponding Euler-Lagrange boundary-value
+problem for the two-dimensional minimization problem:
+
+\[ \begin{cases} 
+      u = u_0 \text{ on } \Gamma_1 \\
+      J(u):= \int_{\Omega} F(x,y,u(x,y),\frac{\partial u}{\partial x}(x,y),\frac{\partial u}{\partial y}(x,y))dxdy \longrightarrow min
+   \end{cases}  
+\]
+
+\noindent
+Here $\Omega \subset R^2$ is a bounded two-dimensional domain with boundary $\Gamma$ split into two disjoint parts, $\Gamma = \Gamma_1 \cup \Gamma_2$.
+
+
+\noindent
+The classical calculus of variations is concerned with the solution of the constrained minimization problem. Assume now that $u(x,y)$ is a solution to problem stated above. Let $v(x,y)$, $(x,y) \in \Omega$ be an arbitrary test function.\newline
+Now Let's consider the following perturbed function i.e.
+\begin{equation}
+    w(x,y) = u(x,y) + \epsilon v(x,y)
+\end{equation}
+satisfies the essential BC if and only if $(iff)$ $v(x,y) = 0 \mathrm{\;on\;}\Gamma_1$, i.e. the test function must satisfy the homogeneous essential BC. Consider an auxiliary function,
+\begin{equation}
+    f(\epsilon) := J(u + \epsilon v)  
+\end{equation}
+
+\noindent
+If functional $J(w)$ attains a minimum at $u(x,y)$ then function $f(\epsilon)$ must attain a minimum at  $\epsilon= 0$ and, consequently,
+\begin{equation}
+    \frac{df}{d\epsilon}=0
+\end{equation}
+
+\noindent Let $u_x=\frac{\partial u}{\partial x}$ and $u_y=\frac{\partial u}{\partial y}$. Now we compute the derivative of the function.
+
+\begin{equation}
+    f(\epsilon) = J(u+\epsilon v) = \int_{\Omega} F(x,y,u(x,y)+\epsilon v(x,y),u_x(x,y)+\epsilon v_x(x,y),u_y(x,y)+\epsilon v_y(x,y))dxdy
+\end{equation}
+
+\noindent Now by Leibniz Rule, we have
+
+\begin{equation}
+    \frac{df}{d\epsilon}(\epsilon) = \int_{\Omega} \frac{d}{d\epsilon}  F(x,y,u(x,y)+\epsilon v(x,y),u_x(x,y)+\epsilon v_x(x,y),u_y(x,y)+\epsilon v_y(x,y))dxdy
+\end{equation}
+
+\noindent so, by computing the derivative with the help of chain rule, we get,
+
+\begin{align}
+    \frac{df}{d\epsilon}(\epsilon) = \int_{\Omega} \Bigg\{ \frac{\partial F}{\partial u}(x,y,u(x,y)+\epsilon v(x,y),u_x(x,y)+\epsilon v_x(x,y),u_y(x,y)+\epsilon v_y(x,y))v(x,y) \nonumber \\
+     + \frac{\partial F}{\partial u_x}(x,y,u(x,y)+\epsilon v(x,y),u_x(x,y)+\epsilon v_x(x,y),u_y(x,y)+\epsilon v_y(x,y))v_x(x,y) \nonumber \\
+    + \frac{\partial F}{\partial u_y}(x,y,u(x,y)+\epsilon v(x,y),u_x(x,y)+\epsilon v_x(x,y),u_y(x,y)+\epsilon v_y(x,y))v_y(x,y)\Bigg\}  dxdy
+\end{align}
+
+\noindent Now letting $\epsilon = 0$, we get,
+
+\begin{align}
+    \frac{df}{d\epsilon}(0) = \int_{\Omega} \Bigg\{  \frac{\partial F}{\partial u}(x,y,u(x,y),u_x(x,y),u_y(x,y))v(x) + \frac{\partial F}{\partial u_x}(x,u(x,y),u_x(x,y),u_y(x,y))v_x(x,y)\nonumber \\+ \frac{\partial F}{\partial u_y}(x,u(x,y),u_x(x,y),u_y(x,y))v_y(x,y)   \Bigg\} dxdy
+\end{align}
+
+\noindent or it can be written as
+\begin{align}\label{D_epsilon}
+    \frac{df}{d\epsilon}(0) = \int_{\Omega} \Bigg\{  \frac{\partial F}{\partial u}v + \frac{\partial F}{\partial u_x}v_x+ \frac{\partial F}{\partial u_y}v_y   \Bigg\} dxdy
+\end{align}
+
+
+\noindent Now consider the following,
+
+\begin{align}\label{P1term_2}
+     \frac{\partial }{\partial x} \left [ \frac{\partial F}{\partial u_x}v \right]  & = \left(\frac{\partial }{\partial x} \frac{\partial F}{\partial u_x} \right) v + \frac{\partial F}{\partial u_x}v_x\nonumber\\
+     \frac{\partial }{\partial x} \left [ \frac{\partial F}{\partial u_x}v \right]  & - \left(\frac{\partial }{\partial x} \frac{\partial F}{\partial u_x} \right) v = \frac{\partial F}{\partial u_x}v_x
+\end{align}
+
+\begin{align}\label{P1term_3}
+     \frac{\partial }{\partial y} \left [ \frac{\partial F}{\partial u_y}v \right]  & = \left(\frac{\partial }{\partial y} \frac{\partial F}{\partial u_y} \right) v + \frac{\partial F}{\partial u_y}v_y\nonumber\\
+     \frac{\partial }{\partial y} \left [ \frac{\partial F}{\partial u_y}v \right]  & - \left(\frac{\partial }{\partial y} \frac{\partial F}{\partial u_y} \right) v = \frac{\partial F}{\partial u_y}v_y
+\end{align}
+
+\noindent
+Now substituting equation (\ref{P1term_2}) and (\ref{P1term_3}) in equation (\ref{D_epsilon}),we get:
+
+\begin{align}\label{D_epsilon_zero}
+    0 &= \int_{\Omega} \Bigg\{  \frac{\partial F}{\partial u}v + \frac{\partial }{\partial x} \left [ \frac{\partial F}{\partial u_x}v \right]   - \left(\frac{\partial }{\partial x} \frac{\partial F}{\partial u_x} \right) v + \frac{\partial }{\partial y} \left [ \frac{\partial F}{\partial u_y}v \right]   - \left(\frac{\partial }{\partial y} \frac{\partial F}{\partial u_y} \right) v   \Bigg\} dxdy\nonumber\\
+    0 &= \int_{\Omega} \Bigg\{  \frac{\partial F}{\partial u}    - \left(\frac{\partial }{\partial x} \frac{\partial F}{\partial u_x} \right)   - \left(\frac{\partial }{\partial y} \frac{\partial F}{\partial u_y} \right)    \Bigg\}v dxdy + \int_{\Omega} \Bigg\{ \frac{\partial }{\partial x} \left [ \frac{\partial F}{\partial u_x}v \right] + \frac{\partial }{\partial y} \left [ \frac{\partial F}{\partial u_y}v \right] \Bigg\}dxdy 
+\end{align}
+
+\noindent Now we take last term from the above equation and use Green's Theorem, with the assumptions $v(x,y)=0\mathrm{\;on\;}\Gamma_1$, we have:
+
+\begin{align}\label{GTuse}
+    \int_{\Omega} \Bigg\{ \frac{\partial }{\partial x} \left [ \frac{\partial F}{\partial u_x}v \right] + \frac{\partial }{\partial y} \left [ \frac{\partial F}{\partial u_y}v \right] \Bigg\}dxdy & =  \int_{\Omega} \Bigg\{ \Bigg(\frac{\partial }{\partial x}  , \frac{\partial }{\partial y}\Bigg) \bullet \left [v \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \right]\Bigg\}dxdy \nonumber\\
+    & =  \int_{\Omega} \nabla  \bullet \left [v \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \right]dxdy \nonumber\\
+    & =  \int_{\Gamma} \left [v \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \right]\bullet \mathbf{N} dxdy \nonumber\\
+    & =  \int_{\Gamma_1} \left [v \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \right]\bullet \mathbf{N} dxdy +  \int_{\Gamma_2} \left [v \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \right]\bullet \mathbf{N} dxdy \nonumber\\\nonumber\\
+    & =  \int_{\Gamma_2} \left [v \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \right]\bullet \mathbf{N} dxdy
+\end{align}
+\noindent
+Where $\mathbf{N}$ is unit normal vector at boundary $\Gamma$. Thus, (\ref{D_epsilon_zero}) becomes:
+
+\begin{align}\label{D_epsilon_zero_main}
+     \int_{\Omega} \Bigg\{  \frac{\partial F}{\partial u}    - \left(\frac{\partial }{\partial x} \frac{\partial F}{\partial u_x} \right)   - \left(\frac{\partial }{\partial y} \frac{\partial F}{\partial u_y} \right)    \Bigg\}v dxdy + \int_{\Gamma_2} \left [v \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \right]\bullet \mathbf{N} dxdy = 0
+\end{align}
+
+\noindent
+Further choosing test functions such that $v(x,y)=0\mathrm{\;on\;}\Gamma_2$, we have:
+\begin{align}\label{BC}
+    \int_{\Gamma_2} \left [v \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \right]\bullet \mathbf{N} dxdy = 0
+\end{align}
+
+\noindent
+Using (\ref{BC}), equation (\ref{D_epsilon_zero_main}) becomes:
+
+\begin{align}
+    \int_{\Omega} \Bigg\{  \frac{\partial F}{\partial u}    - \left(\frac{\partial }{\partial x} \frac{\partial F}{\partial u_x} \right)   - \left(\frac{\partial }{\partial y} \frac{\partial F}{\partial u_y} \right)    \Bigg\}v dxdy = 0
+\end{align}
+\noindent
+Now using Fourier's Generalized Lemma we have:
+
+
+\begin{align}\label{euler_lagrange_equation}
+    \frac{\partial F}{\partial u}    - \frac{\partial }{\partial x} \left(\frac{\partial F}{\partial u_x} \right)   - \frac{\partial }{\partial y} \left(\frac{\partial F}{\partial u_y} \right) = 0
+\end{align}
+
+\noindent
+Now using (\ref{euler_lagrange_equation}) and taking test functions $v$ such that $v(x,y)\equiv 1 \mathrm{\;on\;} \Gamma_2$, we get the following boundary condition:
+
+\begin{align}
+\int_{\Gamma_2} \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \bullet \mathbf{N} dxdy=0
+\end{align}
+
+\noindent Consequently, The Euler-Lagrange equation (\ref{euler_lagrange_equation}) along with the essential and natural BCs constitute the Euler-Lagrange Boundary-Value Problem (E-L BVP),
+
+\[ \begin{cases} 
+      u = u_0 \text{ on } \Gamma_1  \qquad \mathrm{(essential\;BC)}\\
+      \frac{\partial F}{\partial u}    - \frac{\partial }{\partial x} \left(\frac{\partial F}{\partial u_x} \right)   - \frac{\partial }{\partial y} \left(\frac{\partial F}{\partial u_y} \right) = 0  \qquad \mathrm{(Euler\;Lagrange\;Equation)}\\
+      \int_{\Gamma_2} \Bigg( \frac{\partial F}{\partial u_x} ,  \frac{\partial F}{\partial u_y} \Bigg) \bullet \mathbf{N} dxdy=0 \qquad \mathrm{(natural\;BC)}
+    \end{cases}  
+\]
+
+
+Hence, we found the complete Euler Lagrange Equation and it's corresponding essential and natural boundary conditions for two independant variables.
+\newpage

@@ -1,0 +1,61 @@
+\section{Exercise}
+
+Let's consider the 2nd order complete polynomial of the form below while omitting $e$ and assuming overall calculation for an element $e$.
+\begin{equation}
+    u(x) = c_1 +c_2 x+c_3 x^2
+\end{equation}
+
+Let's take the three nodes i.e. $x_a=x_1 , x_2$ and $x_3=x_b$. We have the following relations.
+
+\begin{align}
+    u_1 &= c_1 +c_2 x_1+c_3 x_1^2\\
+    u_2 &= c_1 +c_2 x_2+c_3 x_2^2\\
+    u_3 &= c_1 +c_2 x_3+c_3 x_3^2
+\end{align}
+
+In Matrix Notation, we have as follows.
+\newline
+\begin{center}
+\begin{empheq}
+{\begin{bmatrix}
+1       &   x_1       &   x_1^2       \\
+1       &   x_2       &   x_2^2       \\
+1       &   x_3       &   x_3^2       \\
+            \end{bmatrix}
+            }
+{\begin{bmatrix}
+c_1     \\
+c_2     \\
+c_3     \\
+            \end{bmatrix}
+            }
+    =
+{\begin{bmatrix}
+u_1     \\
+u_2     \\
+u_3     \\
+            \end{bmatrix}
+            }
+\end{empheq}
+\end{center}
+
+
+\begin{equation}
+    D = {x_2}{x_3}^2-{x_2}^2{x_3}-{x_1}\left({x_3}^2-{x_2}^2\right)+{x_1}^2\left({x_3}-{x_2}\right)
+\end{equation}
+
+
+\begin{equation}
+c_1 = \frac{u_1\left({x_2}{x_3}^2-{x_2}^2{x_3}\right)-{x_1}\left(u_2{x_3}^2-{x_2}^2u_3\right)+{x_1}^2\left(u_2{x_3}-{x_2}u_3\right)}{D}    
+\end{equation}
+
+
+\begin{equation}
+c_2 = \frac{{x_3}^2u_2-{x_2}^2u_3-u_1\left({x_3}^2-{x_2}^2\right)+{x_1}^2\left(u_3-u_2\right)}{D}    
+\end{equation}
+
+
+\begin{equation}
+c_3 = \frac{{x_2}{u_3}-{x_3}{u_2}-{x_1}\left({u_3}-{u_2}\right)+{u_1}\left({x_3}-{x_2}\right)}{D}    
+\end{equation}
+

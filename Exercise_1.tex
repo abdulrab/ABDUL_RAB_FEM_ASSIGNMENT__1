@@ -1,0 +1,111 @@
+
+\section{Exercise}
+
+Derive the variational formulation and the corresponding Euler-Lagrange boundary-value
+problem for the minimization problem:
+
+\[ \begin{cases} 
+      u(a)=u_a,  u'(a)=d_a \\
+      J(u):= \int_{a}^{b} F(x,u,u',u'')dx \longrightarrow min
+   \end{cases}  
+\]
+
+\noindent
+The classical calculus of variations is concerned with the solution of the constrained minimization problem. Assume now that $u(x)$ is a solution to problem stated above. Let $v(x)$, $x \in [a, b]$ be an arbitrary test function.\newline
+Now Let's consider the following perturbed function i.e.
+\begin{equation}
+    w(x) = u(x) + \epsilon v(x)
+\end{equation}
+\noindent satisfies the essential BC if and only if $(iff)$ $v(a) = 0$, i.e. the test function must satisfy the homogeneous essential BC. Consider an auxiliary function,
+\begin{equation}
+    f(\epsilon) := J(u + \epsilon v)  
+\end{equation}
+
+\noindent
+If functional $J(w)$ attains a minimum at $u(x)$ then function $f(\epsilon)$ must attain a minimum at  $\epsilon= 0$ and, consequently,
+\begin{equation}
+    \frac{df}{d\epsilon}=0
+\end{equation}
+
+\noindent Now we compute the derivative of the function.
+
+\begin{equation}
+    f(\epsilon) = J(u+\epsilon v) = \int_{a}^{b} F(x,u(x)+\epsilon v(x),u'(x)+\epsilon v'(x),u''(x)+\epsilon v''(x))dx
+\end{equation}
+
+\noindent Now by Leibniz Rule, we have
+
+\begin{equation}
+    \frac{df}{d\epsilon}(\epsilon) = \int_{a}^{b} \frac{d}{d\epsilon}  F(x,u(x)+\epsilon v(x),u'(x)+\epsilon v'(x),u''(x)+\epsilon v''(x))dx
+\end{equation}
+
+\noindent so, by computing the derivative with the help of chain rule, we get,
+
+\begin{align}
+    \frac{df}{d\epsilon}(\epsilon) = \int_{a}^{b} \Bigg\{  \frac{\partial F}{\partial u}(x,u(x)+\epsilon v(x),u'(x)+\epsilon v'(x),u''(x)+\epsilon v''(x))v(x) \nonumber \\
+     + \frac{\partial F}{\partial u'}(x,u(x)+\epsilon v(x),u'(x)+\epsilon v'(x),u''(x)+\epsilon v''(x))v'(x) \nonumber \\
+    + \frac{\partial F}{\partial u''}(x,u(x)+\epsilon v(x),u'(x)+\epsilon v'(x),u''(x)+\epsilon v''(x))v''(x)   \Bigg\} dx
+\end{align}
+
+\noindent Now letting $\epsilon = 0$, we get,
+
+\begin{align}
+    \frac{df}{d\epsilon}(0) = \int_{a}^{b} \Bigg\{  \frac{\partial F}{\partial u}(x,u(x),u'(x),u''(x))v(x) + \frac{\partial F}{\partial u'}(x,u(x),u'(x),u''(x))v'(x)\nonumber \\+ \frac{\partial F}{\partial u''}(x,u(x),u'(x),u''(x))v''(x)   \Bigg\} dx
+\end{align}
+
+\noindent or it can be written as
+\begin{align}\label{D_epsilon_1}
+    \frac{df}{d\epsilon}(0) = \int_{a}^{b} \Bigg\{  \frac{\partial F}{\partial u}v(x) + \frac{\partial F}{\partial u'}v'(x)+ \frac{\partial F}{\partial u''}v''(x)   \Bigg\} dx
+\end{align}
+
+\noindent Now taking the by parts integration of 2nd and 3rd terms in the equation (\ref{D_epsilon_1}), we get,
+\begin{align}\label{P1term_2_1}
+    \int_{a}^{b} \frac{\partial F}{\partial u'}v'(x)dx &= v(x) \frac{\partial F}{\partial u'} \Biggr|_{x=a}^{x=b}  - \int_{a}^{b} v(x) \frac{d}{dx} \frac{\partial F}{\partial u'}dx
+\end{align}
+
+\begin{align}\label{P1term_3_1}
+    \int_{a}^{b} \frac{\partial F}{\partial u'}v'(x)dx &= v'(x) \frac{\partial F}{\partial u''}\Biggr|_{x=a}^{x=b} - \int_{a}^{b} v'(x) \frac{d}{dx} \frac{\partial F}{\partial u''}dx\nonumber\\
+    &= v'(x) \frac{\partial F}{\partial u''}\Biggr|_{x=a}^{x=b} -\left [ v(x) \frac{d}{dx}\frac{\partial F}{\partial u''}\Biggr|_{x=a}^{x=b} - \int_{a}^{b} v(x) \frac{d^2}{dx^2} \frac{\partial F}{\partial u''}dx\right]\nonumber\\
+    &=\left [ v'(x) \frac{\partial F}{\partial u''} - v(x) \frac{d}{dx}\frac{\partial F}{\partial u''}\right ]_{x=a}^{x=b} + \int_{a}^{b} v(x) \frac{d^2}{dx^2} \frac{\partial F}{\partial u''}dx
+\end{align}
+
+\noindent Now substituting equation (\ref{P1term_2_1}) and (\ref{P1term_3_1}) in equation (\ref{D_epsilon_1}),we get:
+
+\begin{align}\label{D_epsilon_zero_1}
+    0 & = \int_{a}^{b} \frac{\partial F}{\partial u}v(x) dx + v(x) \frac{\partial F}{\partial u'} \Biggr|_{x=a}^{x=b}  - \int_{a}^{b} v(x) \frac{d}{dx} \frac{\partial F}{\partial u'}dx + \left [ v'(x) \frac{\partial F}{\partial u''} - v(x) \frac{d}{dx}\frac{\partial F}{\partial u''}\right ]_{x=a}^{x=b} + \int_{a}^{b} v(x) \frac{d^2}{dx^2} \frac{\partial F}{\partial u''}dx\nonumber\\
+    &=\int_{a}^{b} \left [\frac{\partial F}{\partial u}- \frac{d}{dx} \frac{\partial F}{\partial u'} + \frac{d^2}{dx^2} \frac{\partial F}{\partial u''} \right ]v(x)dx   + \left [v(x) \frac{\partial F}{\partial u'} + v'(x) \frac{\partial F}{\partial u''} - v(x) \frac{d}{dx}\frac{\partial F}{\partial u''}\right ]_{x=a}^{x=b}
+\end{align}
+
+\noindent Using the assumptions $v(a)=0,v'(a)=0$, and further choosing test functions such that $v(b)=0,v'(b)=0$,above equation (\ref{D_epsilon_zero}) provides:
+
+\begin{align}\label{D_epsilon_reduced_1}
+    \int_{a}^{b} \left [\frac{\partial F}{\partial u}- \frac{d}{dx} \frac{\partial F}{\partial u'} + \frac{d^2}{dx^2} \frac{\partial F}{\partial u''} \right ]v(x)dx = 0 
+\end{align}
+\noindent
+Now as assumptions of Fourier's Lemma are true, we get:
+
+\begin{align}\label{euler_lagrange_equation_1}
+    \frac{\partial F}{\partial u}- \frac{d}{dx} \frac{\partial F}{\partial u'} + \frac{d^2}{dx^2} \frac{\partial F}{\partial u''} = 0 
+\end{align}
+\noindent
+Now using (\ref{euler_lagrange_equation_1}) and taking test functions $v$ such that $v(b)=v'(b)\equiv 1$, we get the following boundary condition:
+
+\begin{align}
+    &\left [\frac{\partial F}{\partial u'}(b,u(b),u'(b),u''(b)) +  \frac{\partial F}{\partial u''}(b,u(b),u'(b),u''(b)) - \frac{d}{dx}\frac{\partial F}{\partial u''}(b,u(b),u'(b),u''(b))\right] v(b) = 0\nonumber\\
+    \implies& \frac{\partial F}{\partial u'}(b,u(b),u'(b),u''(b)) +  \frac{\partial F}{\partial u''}(b,u(b),u'(b),u''(b)) - \frac{d}{dx}\frac{\partial F}{\partial u''}(b,u(b),u'(b),u''(b)) = 0
+\end{align}
+
+\noindent Consequently, The Euler-Lagrange equation (\ref{euler_lagrange_equation_1}) along with the essential and natural BCs constitute the Euler-Lagrange Boundary-Value Problem (E-L BVP),
+
+\[ \begin{cases} 
+      u(a)=u_a,\quad  u'(a)=d_a \qquad \mathrm{(essential\;BC)}\\
+      \frac{\partial F}{\partial u}- \frac{d}{dx} \frac{\partial F}{\partial u'} + \frac{d^2}{dx^2} \frac{\partial F}{\partial u''}=0  \qquad \mathrm{(Euler\;Lagrange\;Equation)}\\
+      \frac{\partial F}{\partial u'}(b,u(b),u'(b),u''(b)) +  \frac{\partial F}{\partial u''}(b,u(b),u'(b),u''(b)) - \frac{d}{dx}\frac{\partial F}{\partial u''}(b,u(b),u'(b),u''(b)) = 0 \qquad \mathrm{(natural\;BC)}
+    \end{cases}  
+\]
+
+\noindent
+Hence, we found the complete Euler Lagrange Equation and it's corresponding essential and natural boundary conditions.
+
+
+\newpage
